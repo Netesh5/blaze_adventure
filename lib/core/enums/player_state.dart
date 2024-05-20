@@ -1,1 +1,1 @@
-enum PlayerState { idle, running }
+enum PlayerState { idle, running, fall, hit, jump, wallJump, doubleJump }

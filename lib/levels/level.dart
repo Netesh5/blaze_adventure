@@ -11,7 +11,26 @@ class Level extends World {
   FutureOr<void> onLoad() async {
     level = await TiledComponent.load("Level - 1.tmx", Vector2.all(16));
     add(level);
-    add(Player());
+
+    //Getting the layer data
+    final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>("Spawn");
+
+    for (var spawnPoint in spawnPointLayer!.objects) {
+      switch (spawnPoint.class_) {
+        case "Player":
+          final player = Player(
+            character: "Ninja Frog",
+            position: Vector2(
+              spawnPoint.x,
+              spawnPoint.y,
+            ),
+          );
+          add(player);
+          break;
+        default:
+      }
+    }
+
     return super.onLoad();
   }
 }
