@@ -3,10 +3,22 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "Level - 1.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "Blaze Adventure.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Level - 1.tmx": {
+            "scale": 0.912890625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 126.52118100128371,
+                "y": 227.2999572100984
+            }
+        }
     },
     "last.imagePath": "/Users/neteshpaudel/Flame/blaze_adventure/assets/images/Terrain",
     "map.height": 23,
@@ -15,9 +27,13 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
+        "Blaze Adventure.tsx",
+        "Level - 1.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "Blaze Adventure.tsx",
+        "Level - 1.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

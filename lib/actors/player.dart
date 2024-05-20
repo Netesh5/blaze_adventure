@@ -27,13 +27,20 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _loadAllAnimation() {
-    idleAnimation = characterAnimation(state: "Idle");
-    jumpAnimation = characterAnimation(state: "Jump");
-    runAnimation = characterAnimation(state: "Run");
-    hitAnimation = characterAnimation(state: "Hit");
-    wallJumpAnimation = characterAnimation(state: "Wall Jump");
-    doubleJumpAnimation = characterAnimation(state: "Double Jump");
-    fallAnimation = characterAnimation(state: "Fall");
+    idleAnimation = characterAnimation(
+        state: "Idle", amount: ActorSetting.ninjaFrogIdelAmount);
+    jumpAnimation = characterAnimation(
+        state: "Jump", amount: ActorSetting.ninjaFrogJumpAmount);
+    runAnimation = characterAnimation(
+        state: "Run", amount: ActorSetting.ninjaFrogRunningAmount);
+    hitAnimation = characterAnimation(
+        state: "Hit", amount: ActorSetting.ninjaFrogHitAmount);
+    wallJumpAnimation = characterAnimation(
+        state: "Wall Jump", amount: ActorSetting.ninjaFrogWallJumpAmount);
+    doubleJumpAnimation = characterAnimation(
+        state: "Double Jump", amount: ActorSetting.ninjaFrogDoubleJumpAmount);
+    fallAnimation = characterAnimation(
+        state: "Fall", amount: ActorSetting.ninjaFrogFallAmount);
 
 //List out all Animation Available
     animations = {
@@ -48,14 +55,15 @@ class Player extends SpriteAnimationGroupComponent
 
 //Set Current Animation
 
-    current = PlayerState.running;
+    current = PlayerState.hit;
   }
 
-  SpriteAnimation characterAnimation({required String state}) {
+  SpriteAnimation characterAnimation(
+      {required String state, required int amount}) {
     return SpriteAnimation.fromFrameData(
       game.images.fromCache("Main Characters/$character/$state (32x32).png"),
       SpriteAnimationData.sequenced(
-        amount: ActorSetting.ninjaFrogIdelAmount,
+        amount: amount,
         stepTime: ActorSetting.ninjaFrogStepTime,
         textureSize: Vector2.all(32),
       ),
