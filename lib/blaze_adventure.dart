@@ -13,7 +13,8 @@ class BlazeAdventure extends FlameGame {
   Color backgroundColor() => const Color(0xff211F30);
 
   @override
-  FutureOr<void> onLoad() {
+  FutureOr<void> onLoad() async {
+    await images.loadAllImages();
     addAll(
       [
         CameraComponent.withFixedResolution(
