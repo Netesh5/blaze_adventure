@@ -6,10 +6,11 @@ import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World {
   late TiledComponent level;
-
+  final String levelName;
+  Level({required this.levelName});
   @override
   FutureOr<void> onLoad() async {
-    level = await TiledComponent.load("Level - 1.tmx", Vector2.all(16));
+    level = await TiledComponent.load("$levelName.tmx", Vector2.all(16));
     add(level);
 
     //Getting the layer data

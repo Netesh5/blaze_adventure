@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class BlazeAdventure extends FlameGame {
   @override
-  final world = Level();
+  final world = Level(levelName: "Level-1");
 
   @override
   Color backgroundColor() => const Color(0xff211F30);
