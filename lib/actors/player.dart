@@ -3,6 +3,8 @@
 import 'dart:async';
 
 import 'package:blaze_adventure/blaze_adventure.dart';
+import 'package:blaze_adventure/component/collision_block.dart';
+import 'package:blaze_adventure/component/collision_detection.dart';
 import 'package:blaze_adventure/core/actors_setting/actor_setting.dart';
 import 'package:blaze_adventure/core/enums/player_direction.dart';
 import 'package:blaze_adventure/core/enums/player_state.dart';
@@ -26,20 +28,29 @@ class Player extends SpriteAnimationGroupComponent
   double jump = 100;
   Vector2 velocity = Vector2.zero();
 
+  final gravity = 9.8;
+  final double terminalVelocity = 460;
+  final double jumpForce = 300;
+
   bool isFacingRight = true;
 
   PlayerDirection playerDirection = PlayerDirection.none;
+
+  List<CollisionBlock> collisionBlock = [];
 
   Player({this.character = "Ninja Frog", position}) : super(position: position);
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimation();
+
     return super.onLoad();
   }
 
   @override
   void update(double dt) {
     updatePlayerMovemnet(dt);
+    _horizontalCollision();
+    applyGravity(dt);
     super.update(dt);
   }
 
@@ -142,5 +153,28 @@ class Player extends SpriteAnimationGroupComponent
     }
 
     return super.onKeyEvent(event, keysPressed);
+  }
+
+  void _horizontalCollision() {
+    for (var blocks in collisionBlock) {
+      if (!blocks.isPlatform) {
+        if (CheckCollisionDetection.checkCollision(this, blocks)) {
+          if (velocity.x > 0) {
+            velocity.x = 0;
+            position.x = blocks.x - width;
+          }
+          if (velocity.x < 0) {
+            velocity.x = 0;
+            position.x = blocks.x + blocks.width + width;
+          }
+        }
+      }
+    }
+  }
+
+  void applyGravity(double dt) {
+    velocity.y += gravity;
+    velocity.y = velocity.y.clamp(-jumpForce, terminalVelocity);
+    position.y += velocity.y * dt;
   }
 }

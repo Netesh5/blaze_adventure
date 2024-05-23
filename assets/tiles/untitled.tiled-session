@@ -39,15 +39,29 @@
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 320.410783055199,
-                "y": 184.5785194694052
+                "y": 184.57851946940522
             }
         },
         "Level-2.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
             "scale": 0.912890625,
             "selectedLayer": 1,
             "viewCenter": {
                 "x": 320.410783055199,
-                "y": 184.5785194694052
+                "y": 184.57851946940522
+            }
+        },
+        "Level-3.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.9272,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 314.3874029335634,
+                "y": 229.18464193270057
             }
         }
     },
