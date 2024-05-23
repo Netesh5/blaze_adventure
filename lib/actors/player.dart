@@ -23,14 +23,14 @@ class Player extends SpriteAnimationGroupComponent
   final String character;
 
   double speed = 100;
-  double jump = 10;
+  double jump = 100;
   Vector2 velocity = Vector2.zero();
 
   bool isFacingRight = true;
 
-  PlayerDirection playerDirection = PlayerDirection.left;
+  PlayerDirection playerDirection = PlayerDirection.none;
 
-  Player({required this.character, position}) : super(position: position);
+  Player({this.character = "Ninja Frog", position}) : super(position: position);
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimation();
@@ -72,7 +72,7 @@ class Player extends SpriteAnimationGroupComponent
 
 //Set Current Animation
 
-    current = PlayerState.running;
+    current = PlayerState.idle;
   }
 
   SpriteAnimation characterAnimation(
@@ -108,7 +108,7 @@ class Player extends SpriteAnimationGroupComponent
         current = PlayerState.running;
         break;
       case PlayerDirection.jump:
-        dy += jump;
+        dy -= jump;
         current = PlayerState.jump;
         break;
       case PlayerDirection.none:
@@ -116,7 +116,7 @@ class Player extends SpriteAnimationGroupComponent
         break;
       default:
     }
-    velocity = Vector2(dx, 0);
+    velocity = Vector2(dx, dy);
     position += velocity * dt;
   }
 
@@ -129,12 +129,14 @@ class Player extends SpriteAnimationGroupComponent
     final isJumpKeyPressed = keysPressed.contains(LogicalKeyboardKey.keyW) ||
         keysPressed.contains(LogicalKeyboardKey.arrowUp);
 
-    if (isJumpKeyPressed && isRightKeyPressed) {
+    if (isLeftKeyPressed && isRightKeyPressed) {
       playerDirection = PlayerDirection.none;
     } else if (isLeftKeyPressed) {
       playerDirection = PlayerDirection.left;
     } else if (isRightKeyPressed) {
       playerDirection = PlayerDirection.right;
+    } else if (isJumpKeyPressed) {
+      playerDirection = PlayerDirection.jump;
     } else {
       playerDirection = PlayerDirection.none;
     }
