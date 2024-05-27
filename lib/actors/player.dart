@@ -29,10 +29,11 @@ class Player extends SpriteAnimationGroupComponent
   Vector2 velocity = Vector2.zero();
 
   final gravity = 9.8;
-  final double terminalVelocity = 460;
-  final double jumpForce = 300;
+  final double terminalVelocity = 200;
+  final double jumpForce = 10;
 
   bool isFacingRight = true;
+  bool isOnGround = false;
 
   PlayerDirection playerDirection = PlayerDirection.none;
 
@@ -50,7 +51,10 @@ class Player extends SpriteAnimationGroupComponent
   void update(double dt) {
     updatePlayerMovemnet(dt);
     _horizontalCollision();
+
     applyGravity(dt);
+    _verticalCollision();
+
     super.update(dt);
   }
 
@@ -175,6 +179,25 @@ class Player extends SpriteAnimationGroupComponent
   void applyGravity(double dt) {
     velocity.y += gravity;
     velocity.y = velocity.y.clamp(-jumpForce, terminalVelocity);
-    position.y += velocity.y * dt;
+    position.y += velocity.y * dt * gravity;
+  }
+
+  void _verticalCollision() {
+    for (var block in collisionBlock) {
+      if (block.isPlatform) {
+      } else {
+        if (CheckCollisionDetection.checkCollision(this, block)) {
+          if (velocity.y > 0) {
+            velocity.y = 0;
+            position.y = block.y - width;
+            isOnGround = true;
+          }
+          if (velocity.y < 0) {
+            velocity.y = 0;
+            position.y = block.y + block.height;
+          }
+        }
+      }
+    }
   }
 }

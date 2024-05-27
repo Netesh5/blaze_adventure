@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-2.tmx",
+    "activeFile": "Level-3.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -47,7 +47,7 @@
                 3
             ],
             "scale": 0.912890625,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 320.410783055199,
                 "y": 184.57851946940522
@@ -55,6 +55,7 @@
         },
         "Level-3.tmx": {
             "expandedObjectLayers": [
+                3,
                 2
             ],
             "scale": 0.9272,
@@ -74,13 +75,15 @@
     "openFiles": [
         "Blaze Adventure.tsx",
         "Level-1.tmx",
-        "Level-2.tmx"
+        "Level-2.tmx",
+        "Level-3.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
         "Blaze Adventure.tsx",
         "Level-1.tmx",
         "Level-2.tmx",
+        "Level-3.tmx",
         "Level - 2.tmx",
         "Level - 1.tmx"
     ],
